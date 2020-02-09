@@ -51,7 +51,7 @@
 	.av-age-verification-content h3 {
 		margin-bottom: 15px;
 
-		font-size: 2.5em;
+		font-size: {2.5 * $avTextSizeMultiplicator}em;
 
 		color: {$avBoxTextColor};
 	}
@@ -59,7 +59,7 @@
 	.av-age-verification-content p {
 		margin-bottom: 30px;
 
-		font-size: 1.2em;
+		font-size: {1.2 * $avTextSizeMultiplicator}em;
 
 		color: {$avBoxTextColor};
 	}
@@ -70,7 +70,7 @@
 		border: none;
 		border-radius: 5px;
 
-		font-size: 1.2em;
+		font-size: {1.2 * $avTextSizeMultiplicator}em;
 
 		color: {$avButtonTextColor};
 		background-color: {$avButtonBackgroundColor};

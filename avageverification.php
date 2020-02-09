@@ -90,6 +90,11 @@ class AvAgeVerification extends Module
                     'label' => $this->l('Button Text Color'),
                     'name' => 'avButtonTextColor',
                     'required' => true
+                ], [
+                    'type' => 'text',
+                    'label' => $this->l('Text Size Multiplicator'),
+                    'name' => 'avTextSizeMultiplicator',
+                    'required' => true
                 ]
             ], 'submit' => [
                 'title' => $this->l('Save'),
@@ -129,6 +134,7 @@ class AvAgeVerification extends Module
         $helper->fields_value['avBoxTextColor'] = Configuration::get('avBoxTextColor');
         $helper->fields_value['avButtonBackgroundColor'] = Configuration::get('avButtonBackgroundColor');
         $helper->fields_value['avButtonTextColor'] = Configuration::get('avButtonTextColor');
+        $helper->fields_value['avTextSizeMultiplicator'] = Configuration::get('avTextSizeMultiplicator');
 
         return ($helper->generateForm($fielsForm));
     }
@@ -149,23 +155,27 @@ class AvAgeVerification extends Module
             $avBoxTextColor = strval(Tools::getValue('avBoxTextColor'));
             $avButtonBackgroundColor = strval(Tools::getValue('avButtonBackgroundColor'));
             $avButtonTextColor = strval(Tools::getValue('avButtonTextColor'));
+            $avTextSizeMultiplicator = strval(Tools::getValue('avTextSizeMultiplicator'));
 
             if (!$avBoxBackgroundColor
                 || !$avBoxBorderColor
                 || !$avBoxTextColor
                 || !$avButtonBackgroundColor
                 || !$avButtonTextColor
+                || !$avTextSizeMultiplicator
                 || empty($avBoxBackgroundColor)
                 || empty($avBoxBorderColor)
                 || empty($avBoxTextColor)
                 || empty($avButtonBackgroundColor)
                 || empty($avButtonTextColor)
+                || empty($avTextSizeMultiplicator)
                 || !Validate::isGenericName($avOverlayOpacity)
                 || !Validate::isGenericName($avBoxBackgroundColor)
                 || !Validate::isGenericName($avBoxBorderColor)
                 || !Validate::isGenericName($avBoxTextColor)
                 || !Validate::isGenericName($avButtonBackgroundColor)
                 || !Validate::isGenericName($avButtonTextColor)
+                || !Validate::isGenericName($avTextSizeMultiplicator)
             ) {
                 $output .= $this->displayError($this->l('Invalid Configuration Value'));
             } else {
@@ -175,6 +185,7 @@ class AvAgeVerification extends Module
                 Configuration::updateValue('avBoxTextColor', $avBoxTextColor);
                 Configuration::updateValue('avButtonBackgroundColor', $avButtonBackgroundColor);
                 Configuration::updateValue('avButtonTextColor', $avButtonTextColor);
+                Configuration::updateValue('avTextSizeMultiplicator', $avTextSizeMultiplicator);
 
                 $output .= $this->displayConfirmation($this->l('Settings Updated!'));
             }
@@ -197,7 +208,8 @@ class AvAgeVerification extends Module
                 'avBoxBorderColor' => Configuration::get('avBoxBorderColor'),
                 'avBoxTextColor' => Configuration::get('avBoxTextColor'),
                 'avButtonBackgroundColor' => Configuration::get('avButtonBackgroundColor'),
-                'avButtonTextColor' => Configuration::get('avButtonTextColor')
+                'avButtonTextColor' => Configuration::get('avButtonTextColor'),
+                'avTextSizeMultiplicator' => Configuration::get('avTextSizeMultiplicator')
             ]
         );
 
@@ -218,6 +230,7 @@ class AvAgeVerification extends Module
             Configuration::updateValue('avBoxTextColor', 'white') &&
             Configuration::updateValue('avButtonBackgroundColor', 'rgb(29, 31, 33)') &&
             Configuration::updateValue('avButtonTextColor', 'white') &&
+            Configuration::updateValue('avTextSizeMultiplicator', '1.0') &&
             $this->registerHook('displayFooter'));
     }
 
@@ -235,6 +248,7 @@ class AvAgeVerification extends Module
             Configuration::deleteByName('avBoxTextColor') &&
             Configuration::deleteByName('avButtonBackgroundColor') &&
             Configuration::deleteByName('avButtonTextColor') &&
+            Configuration::deleteByName('avTextSizeMultiplicator') &&
             $this->unregisterHook('displayFooter'));
     }
 }
