@@ -33,8 +33,7 @@
 		justify-content: center;
 		align-items: center;
 
-		width: 700px;
-		height: 300px;
+		padding: 50px 100px;
 
 		border: 1px solid {$avBoxBorderColor};
 		border-radius: 10px;

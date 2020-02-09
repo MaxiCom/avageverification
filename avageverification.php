@@ -269,7 +269,7 @@ class AvAgeVerification extends Module
             Configuration::updateValue('avBoxBackgroundColor', 'black') &&
             Configuration::updateValue('avBoxBorderColor', 'rgb(62, 62, 62)') &&
             Configuration::updateValue('avBoxTextColor', 'white') &&
-            Configuration::updateValue('avButtonBackgroundColor', 'rgb(29, 31, 33)') &&
+            Configuration::updateValue('avButtonBackgroundColor', '#1d1f21') &&
             Configuration::updateValue('avButtonTextColor', 'white') &&
             Configuration::updateValue('avTextSizeMultiplicator', '1.0') &&
             $this->registerHook('displayFooter'));
