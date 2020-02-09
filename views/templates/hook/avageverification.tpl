@@ -20,7 +20,7 @@
 
 		background-color: black;
 
-		opacity: 1;
+		opacity: {$avOverlayOpacity};
 
 		z-index: 1000001;
 	}
@@ -36,10 +36,10 @@
 		width: 700px;
 		height: 300px;
 
-		border: 1px solid rgb(209, 206, 199);
+		border: 1px solid {$avBoxBorderColor};
 		border-radius: 10px;
 
-		background-color: black;
+		background-color: {$avBoxBackgroundColor};
 
 		transform: translateY(-100px);
 
@@ -53,7 +53,7 @@
 
 		font-size: 2.5em;
 
-		color: white;
+		color: {$avBoxTextColor};
 	}
 
 	.av-age-verification-content p {
@@ -61,7 +61,7 @@
 
 		font-size: 1.2em;
 
-		color: rgb(209, 206, 199);
+		color: {$avBoxTextColor};
 	}
 
 	.av-age-verification-content button {
@@ -72,17 +72,24 @@
 
 		font-size: 1.2em;
 
-		color: white;
-		background-color: rgb(29, 31, 33);
+		color: {$avButtonTextColor};
+		background-color: {$avButtonBackgroundColor};
 
 		cursor: pointer;
 
 		outline: none;
 
-		transition: background-color .2s ease;
+		transition: filter .2s ease;
 	}
 
-	.av-age-verification-content button:hover { background-color: rgb(60, 64, 66); }
+	.av-age-verification-content h3, .av-age-verification-content p {
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	.av-age-verification-content button:hover { filter: contrast(120%); }
 </style>
 
 
@@ -122,10 +129,10 @@
 			<div class="av-age-verification-opacity"></div>\
 			<div class="av-age-verification-content">\
 			<img src="">\
-			<h3>Age Verification</h3>\
-			<p>This website contains age-restricted content.<br>\
-			You must be 18 years old or over to enter.</p>\
-			<button onclick="ageVerification(true)">I am 18 or older - Enter</button>\
+			<h3>{l s='Age Verification' mod='avageverification'}</h3>\
+			<p>{l s='This website contains age-restricted content.' mod='avageverification'}<br>\
+			{l s='You must be 18 years old or over to enter.' mod='avageverification'}</p>\
+			<button onclick="ageVerification(true)">{l s='I am 18 or older - Enter' mod='avageverification'}</button>\
 			</div>\
 			</div>';
 		document.body.prepend(div);
