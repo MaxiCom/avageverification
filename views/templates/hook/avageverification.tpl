@@ -4,7 +4,7 @@
 		top: 0;
 		left: 0;
 
-		display: none;
+		display: flex;
 		justify-content: center;
 		align-items: center;
 
@@ -13,6 +13,8 @@
 	}
 
 	.av-age-verification-opacity {
+		position: fixed;
+
 		width: 100%;
 		height: 100%;
 
@@ -20,7 +22,7 @@
 
 		opacity: 1;
 
-		z-index: 100;
+		z-index: 101;
 	}
 
 	.av-age-verification-content {
@@ -43,7 +45,7 @@
 
 		font-family: 'Arial';
 
-		z-index: 101;
+		z-index: 102;
 	}
 
 	.av-age-verification-content h3 {
@@ -84,17 +86,6 @@
 </style>
 
 
-<div class="av-age-verification-wrapper">
-	<div class="av-age-verification-opacity"></div>
-	<div class="av-age-verification-content">
-		<img src="">
-		<h3>Age Verification</h3>
-		<p>This website contains age-restricted content.<br>
-			You must be 18 years old or over to enter.</p>
-		<button onclick="ageVerification(true)">I am 18 or older - Enter</button>
-	</div>
-</div>
-
 <script>
 	function setCookie(name, value, days) {
 		var expires = "";
@@ -124,10 +115,20 @@
 		}
 	}
 
-	if (getCookie('av-age-verification') !== 'true') {
-		var overlay = document.querySelector('.av-age-verification-wrapper');
+		if (getCookie('av-age-verification') !== 'true') {
+			var div = document.createElement('div');
 
-		overlay.style.display = 'flex';
-		document.body.style.overflow = 'hidden';
-	}
+			div.innerHTML = '<div class="av-age-verification-wrapper">\
+				<div class="av-age-verification-opacity"></div>\
+				<div class="av-age-verification-content">\
+				<img src="">\
+				<h3>Age Verification</h3>\
+				<p>This website contains age-restricted content.<br>\
+				You must be 18 years old or over to enter.</p>\
+				<button onclick="ageVerification(true)">I am 18 or older - Enter</button>\
+				</div>\
+				</div>';
+			document.body.prepend(div);
+			document.body.style.overflow = 'hidden';
+		}
 </script>
