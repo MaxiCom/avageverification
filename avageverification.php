@@ -56,15 +56,56 @@ class AvAgeVerification extends Module
     {
         $defaultLang = (int)Configuration::get('PS_LANG_DEFAULT');
         $helper = new HelperForm();
+        $options = [
+            [
+              'id_options' => '0',
+              'name' => '0%'
+            ], [
+                'id_options' => '0.1',
+                'name' => '10%'
+            ], [
+                'id_options' => '0.2',
+                'name' => '20%'
+            ], [
+                'id_options' => '0.3',
+                'name' => '30%'
+            ], [
+                'id_options' => '0.4',
+                'name' => '40%'
+            ], [
+                'id_options' => '0.5',
+                'name' => '50%'
+            ], [
+                'id_options' => '0.6',
+                'name' => '60%'
+            ], [
+                'id_options' => '0.7',
+                'name' => '70%'
+            ], [
+                'id_options' => '0.8',
+                'name' => '80%'
+            ], [
+                'id_options' => '0.9',
+                'name' => '90%'
+            ], [
+                'id_options' => '1',
+                'name' => '100%'
+            ]
+        ];
         $fielsForm[0]['form'] = [
             'legend' => [
                 'title' => $this->l('Settings')
             ], 'input' => [
                 [
-                    'type' => 'text',
+                    'type' => 'select',
                     'label' => $this->l('Overlay Opacity'),
                     'name' => 'avOverlayOpacity',
-                    'required' => true
+                    'required' => true,
+                    'options' => [
+                        'query' => $options,
+                        'id' => 'id_options',
+                        'name' => 'name'
+                    ]
                 ], [
                     'type' => 'text',
                     'label' => $this->l('Box Background Color'),
