@@ -56,7 +56,25 @@ class AvAgeVerification extends Module
     {
         $defaultLang = (int)Configuration::get('PS_LANG_DEFAULT');
         $helper = new HelperForm();
-        $options = [
+        $avTextSizeMultiplicatorOptions = [
+            [
+                'id_options' => '0.7',
+                'name' => 'Smaller'
+            ],[
+                'id_options' => '0.8',
+                'name' => 'Small'
+            ],[
+                'id_options' => '1',
+                'name' => 'Medium'
+            ],[
+                'id_options' => '1.1',
+                'name' => 'Large'
+            ],[
+                'id_options' => '1.2',
+                'name' => 'Larger'
+            ]
+        ];
+        $avOverlayOpacityOptions = [
             [
               'id_options' => '0',
               'name' => '0%'
@@ -102,40 +120,45 @@ class AvAgeVerification extends Module
                     'name' => 'avOverlayOpacity',
                     'required' => true,
                     'options' => [
-                        'query' => $options,
+                        'query' => $avOverlayOpacityOptions,
                         'id' => 'id_options',
                         'name' => 'name'
                     ]
                 ], [
-                    'type' => 'text',
+                    'type' => 'color',
                     'label' => $this->l('Box Background Color'),
                     'name' => 'avBoxBackgroundColor',
                     'required' => true
                 ], [
-                    'type' => 'text',
+                    'type' => 'color',
                     'label' => $this->l('Box Border Color'),
                     'name' => 'avBoxBorderColor',
                     'required' => true
                 ], [
-                    'type' => 'text',
+                    'type' => 'color',
                     'label' => $this->l('Box Text Color'),
                     'name' => 'avBoxTextColor',
                     'required' => true
                 ], [
-                    'type' => 'text',
+                    'type' => 'color',
                     'label' => $this->l('Button Background Color'),
                     'name' => 'avButtonBackgroundColor',
                     'required' => true
                 ], [
-                    'type' => 'text',
+                    'type' => 'color',
                     'label' => $this->l('Button Text Color'),
                     'name' => 'avButtonTextColor',
                     'required' => true
                 ], [
-                    'type' => 'text',
-                    'label' => $this->l('Text Size Multiplicator'),
+                    'type' => 'select',
+                    'label' => $this->l('Text Size'),
                     'name' => 'avTextSizeMultiplicator',
-                    'required' => true
+                    'required' => true,
+                    'options' => [
+                        'query' => $avTextSizeMultiplicatorOptions,
+                        'id' => 'id_options',
+                        'name' => 'name'
+                    ]
                 ]
             ], 'submit' => [
                 'title' => $this->l('Save'),
@@ -266,11 +289,11 @@ class AvAgeVerification extends Module
     {
         return (parent::install() &&
             Configuration::updateValue('avOverlayOpacity', '0.5') &&
-            Configuration::updateValue('avBoxBackgroundColor', 'black') &&
-            Configuration::updateValue('avBoxBorderColor', 'rgb(62, 62, 62)') &&
-            Configuration::updateValue('avBoxTextColor', 'white') &&
+            Configuration::updateValue('avBoxBackgroundColor', '#000000') &&
+            Configuration::updateValue('avBoxBorderColor', '#3e3e3e') &&
+            Configuration::updateValue('avBoxTextColor', '#ffffff') &&
             Configuration::updateValue('avButtonBackgroundColor', '#1d1f21') &&
-            Configuration::updateValue('avButtonTextColor', 'white') &&
+            Configuration::updateValue('avButtonTextColor', '#ffffff') &&
             Configuration::updateValue('avTextSizeMultiplicator', '1.0') &&
             $this->registerHook('displayFooter'));
     }
