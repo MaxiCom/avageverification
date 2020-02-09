@@ -75,11 +75,13 @@
 		color: {$avButtonTextColor};
 		background-color: {$avButtonBackgroundColor};
 
+		opacity: 0.9;
+		
 		cursor: pointer;
 
 		outline: none;
 
-		transition: filter .2s ease;
+		transition: opacity .2s ease;
 	}
 
 	.av-age-verification-content h3, .av-age-verification-content p {
@@ -89,7 +91,7 @@
 		user-select: none;
 	}
 
-	.av-age-verification-content button:hover { filter: contrast(120%); }
+	.av-age-verification-content button:hover { opacity: 1; }
 </style>
 
 
