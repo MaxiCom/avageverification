@@ -1,6 +1,6 @@
 <style type="text/css">
 	.av-age-verification-wrapper {
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 
@@ -118,10 +118,9 @@
 
 	function ageVerification(bool) {
 		if (bool === true) {
-			var overlay = document.querySelector('.av-age-verification-wrapper');
-
-			overlay.style.display = 'none';
 			setCookie('av-age-verification', 'true', 30);
+
+			location.reload();
 		}
 	}
 
@@ -129,5 +128,6 @@
 		var overlay = document.querySelector('.av-age-verification-wrapper');
 
 		overlay.style.display = 'flex';
+		document.body.style.overflow = 'hidden';
 	}
 </script>
