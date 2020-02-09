@@ -22,7 +22,7 @@
 
 		opacity: 1;
 
-		z-index: 101;
+		z-index: 1000001;
 	}
 
 	.av-age-verification-content {
@@ -45,7 +45,7 @@
 
 		font-family: 'Arial';
 
-		z-index: 102;
+		z-index: 1000002;
 	}
 
 	.av-age-verification-content h3 {
@@ -115,20 +115,20 @@
 		}
 	}
 
-		if (getCookie('av-age-verification') !== 'true') {
-			var div = document.createElement('div');
+	if (getCookie('av-age-verification') !== 'true') {
+		var div = document.createElement('div');
 
-			div.innerHTML = '<div class="av-age-verification-wrapper">\
-				<div class="av-age-verification-opacity"></div>\
-				<div class="av-age-verification-content">\
-				<img src="">\
-				<h3>Age Verification</h3>\
-				<p>This website contains age-restricted content.<br>\
-				You must be 18 years old or over to enter.</p>\
-				<button onclick="ageVerification(true)">I am 18 or older - Enter</button>\
-				</div>\
-				</div>';
-			document.body.prepend(div);
-			document.body.style.overflow = 'hidden';
-		}
+		div.innerHTML = '<div class="av-age-verification-wrapper">\
+			<div class="av-age-verification-opacity"></div>\
+			<div class="av-age-verification-content">\
+			<img src="">\
+			<h3>Age Verification</h3>\
+			<p>This website contains age-restricted content.<br>\
+			You must be 18 years old or over to enter.</p>\
+			<button onclick="ageVerification(true)">I am 18 or older - Enter</button>\
+			</div>\
+			</div>';
+		document.body.prepend(div);
+		document.body.style.overflow = 'hidden';
+	}
 </script>
