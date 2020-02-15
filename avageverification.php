@@ -110,17 +110,51 @@ class AvAgeVerification extends Module
                 'name' => '100%'
             ]
         ];
-        $fielsForm[0]['form'] = [
+        $fieldsForm[0]['form'] = [
             'legend' => [
                 'title' => $this->l('Settings')
             ], 'input' => [
                 [
+                    'type' => 'switch',
+                    'label' => $this->l('Display on every page'),
+                    'name' => 'avAllPages',
+                    'values' => [
+                        [
+                            'id' => 'active_on',
+                            'value' => 1,
+                            'label' => $this->l('Yes')
+                        ], [
+                            'id' => 'active_off',
+                            'value' => 0,
+                            'label' => $this->l('No')
+                        ]
+                    ]
+                ], [
+                    'type' => 'categories',
+                    'label' => $this->l('Category'),
+                    'name' => 'avCategory',
+                    'required' => true,
+                    'tree' => [
+                        'id' => 'avCategory',
+                        'selected_categories' => array(Configuration::get('avCategory'))
+                    ]
+                ], [
                     'type' => 'text',
                     'label' => $this->l('Required age'),
                     'name' => 'avAge',
                     'required' => true,
                     'class' => 'fixed-width-xl'
-                ], [
+                ]
+            ], 'submit' => [
+                'title' => $this->l('Save'),
+                'class' => 'btn btn-default pull-right'
+            ]
+        ];
+        $fieldsForm[1]['form'] = [
+            'legend' => [
+                'title' => $this->l('Styles')
+            ], 'input' => [
+                [
                     'type' => 'select',
                     'label' => $this->l('Overlay Opacity'),
                     'name' => 'avOverlayOpacity',
@@ -206,8 +240,9 @@ class AvAgeVerification extends Module
         $helper->fields_value['avButtonTextColor'] = Configuration::get('avButtonTextColor');
         $helper->fields_value['avTextSizeMultiplicator'] = Configuration::get('avTextSizeMultiplicator');
         $helper->fields_value['avAge'] = Configuration::get('avAge');
+        $helper->fields_value['avAllPages'] = Configuration::get('avAllPages');
 
-        return ($helper->generateForm($fielsForm));
+        return ($helper->generateForm(array($fieldsForm[0], $fieldsForm[1])));
     }
 
     /**
@@ -228,6 +263,8 @@ class AvAgeVerification extends Module
             $avButtonTextColor = strval(Tools::getValue('avButtonTextColor'));
             $avTextSizeMultiplicator = strval(Tools::getValue('avTextSizeMultiplicator'));
             $avAge = strval(Tools::getValue('avAge'));
+            $avAllPages = strval(Tools::getValue('avAllPages'));
+            $avCategory = strval(Tools::getValue('avCategory'));
 
             if (!$avBoxBackgroundColor
                 || !$avBoxBorderColor
@@ -236,6 +273,7 @@ class AvAgeVerification extends Module
                 || !$avButtonTextColor
                 || !$avTextSizeMultiplicator
                 || !$avAge
+                || !$avCategory
                 || empty($avBoxBackgroundColor)
                 || empty($avBoxBorderColor)
                 || empty($avBoxTextColor)
@@ -243,6 +281,7 @@ class AvAgeVerification extends Module
                 || empty($avButtonTextColor)
                 || empty($avTextSizeMultiplicator)
                 || empty($avAge)
+                || empty($avCategory)
                 || !Validate::isGenericName($avOverlayOpacity)
                 || !Validate::isGenericName($avBoxBackgroundColor)
                 || !Validate::isGenericName($avBoxBorderColor)
@@ -251,6 +290,8 @@ class AvAgeVerification extends Module
                 || !Validate::isGenericName($avButtonTextColor)
                 || !Validate::isGenericName($avTextSizeMultiplicator)
                 || !Validate::isGenericName($avAge)
+                || !Validate::isGenericName($avAllPages)
+                || !Validate::isGenericName($avCategory)
             ) {
                 $output .= $this->displayError($this->l('Invalid Configuration Value'));
             } else {
@@ -262,6 +303,8 @@ class AvAgeVerification extends Module
                 Configuration::updateValue('avButtonTextColor', $avButtonTextColor);
                 Configuration::updateValue('avTextSizeMultiplicator', $avTextSizeMultiplicator);
                 Configuration::updateValue('avAge', $avAge);
+                Configuration::updateValue('avAllPages', $avAllPages);
+                Configuration::updateValue('avCategory', $avCategory);
 
                 $output .= $this->displayConfirmation($this->l('Settings Updated!'));
             }
@@ -290,7 +333,9 @@ class AvAgeVerification extends Module
             ]
         );
 
-        return ($this->display(__FILE__, 'avageverification.tpl'));
+        if (Configuration::get('avAllPages') == '1' || Tools::getValue('id_category') == Configuration::get('avCategory')) {
+            return ($this->display(__FILE__, 'avageverification.tpl'));
+        }
     }
 
     /**
@@ -309,6 +354,8 @@ class AvAgeVerification extends Module
             Configuration::updateValue('avButtonTextColor', '#ffffff') &&
             Configuration::updateValue('avTextSizeMultiplicator', '1.0') &&
             Configuration::updateValue('avAge', '18') &&
+            Configuration::updateValue('avAllPages', '1') &&
+            Configuration::updateValue('avCategory', Configuration::get('PS_HOME_CATEGORY')) &&
             $this->registerHook('displayFooter'));
     }
 
@@ -328,6 +375,8 @@ class AvAgeVerification extends Module
             Configuration::deleteByName('avButtonTextColor') &&
             Configuration::deleteByName('avTextSizeMultiplicator') &&
             Configuration::deleteByName('avAge') &&
+            Configuration::deleteByName('avAllPages') &&
+            Configuration::deleteByName('avCategory') &&
             $this->unregisterHook('displayFooter'));
     }
 }
