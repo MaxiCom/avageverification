@@ -130,10 +130,10 @@
 			<div class="av-age-verification-opacity"></div>\
 			<div class="av-age-verification-content">\
 			<img src="">\
-			<h3>{l s='Age Verification' mod='avageverification'}</h3>\
-			<p>{l s='This website contains age-restricted content.' mod='avageverification'}<br>\
-			{l s='You must be %1$s years old or over to enter.' sprintf=[$avAge] mod='avageverification'}</p>\
-			<button onclick="ageVerification(true)">{l s='I am %1$s or older - Enter' sprintf=[$avAge] mod='avageverification'}</button>\
+			<h3>{l|escape:'quotes' s='Age Verification' mod='avageverification'}</h3>\
+			<p>{l|escape:'quotes' s='This website contains age-restricted content.' mod='avageverification' }<br>\
+			{l|escape:'quotes' s='You must be %1$s years old or over to enter.' sprintf=[$avAge] mod='avageverification'}</p>\
+			<button onclick="ageVerification(true)">{l|escape:'quotes' s='I am %1$s or older - Enter' sprintf=[$avAge] mod='avageverification'}</button>\
 			</div>\
 			</div>';
 		document.body.prepend(div);
