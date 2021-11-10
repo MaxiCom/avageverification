@@ -24,6 +24,7 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
       - 'prestashop_data:/bitnami/prestashop'
+      - './avageverification:/bitnami/prestashop/modules/avageverification/'
     depends_on:
       - mariadb
 volumes:
