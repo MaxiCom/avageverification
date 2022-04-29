@@ -20,3 +20,9 @@ http://localhost/administration/
 email: user@example.com
 password: bitnami1
 ```
+
+Prestashop Container CLI:
+```
+docker exec -it avageverification_prestashop_1 /bin/bash
+cd /bitnami/prestashop/
+```
