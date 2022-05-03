@@ -1,7 +1,5 @@
 # avageverification
 
-WARNING: Before every push, remember to recomment AvAgeVerification volume in docker-compose.yml
-
 Starting environment:
 ```
 docker-compose up -d && docker-compose logs -f
