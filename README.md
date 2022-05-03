@@ -15,6 +15,7 @@ Remove AvAgeVerification volume comment in docker-compose.yml
 docker-compose up -d
 
 Back-Office -> Modules -> Module Catalog -> Search "AvAgeVerification" -> Install
+Back-Office -> Advanced Parameters -> Performance -> Smarty Template compilation -> Force Compilation
 ```
 
 Prestashop Container CLI:
