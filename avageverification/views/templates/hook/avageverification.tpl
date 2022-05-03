@@ -1,5 +1,5 @@
-<style type="text/css">
-	.av-age-verification-wrapper {
+<style>
+	.AvAgeVerification-wrapper {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -12,7 +12,7 @@
 		height: 100%;
 	}
 
-	.av-age-verification-opacity {
+	.AvAgeVerification-opacity {
 		position: fixed;
 
 		width: 100%;
@@ -25,7 +25,7 @@
 		z-index: 1000001;
 	}
 
-	.av-age-verification-content {
+	.AvAgeVerification-content {
 		position: fixed;
 
 		display: flex;
@@ -47,7 +47,7 @@
 		z-index: 1000002;
 	}
 
-	.av-age-verification-content h3 {
+	.AvAgeVerification-content h3 {
 		margin-bottom: 15px;
 
 		font-size: {2.5 * $avTextSizeMultiplicator}em;
@@ -55,7 +55,7 @@
 		color: {$avBoxTextColor};
 	}
 
-	.av-age-verification-content p {
+	.AvAgeVerification-content p {
 		margin-bottom: 30px;
 
 		font-size: {1.2 * $avTextSizeMultiplicator}em;
@@ -63,7 +63,7 @@
 		color: {$avBoxTextColor};
 	}
 
-	.av-age-verification-content button {
+	.AvAgeVerification-content button {
 		padding: 15px 30px;
 
 		border: none;
@@ -83,19 +83,19 @@
 		transition: opacity .2s ease;
 	}
 
-	.av-age-verification-content h3, .av-age-verification-content p {
+	.AvAgeVerification-content h3, .AvAgeVerification-content p {
 		-webkit-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
 	}
 
-	.av-age-verification-content button:hover { opacity: 1; }
+	.AvAgeVerification-content button:hover { opacity: 1; }
 </style>
 
 
 <script>
-	function setCookie(name, value, days) {
+	function AvAgeVerification_SetCookie(name, value, days) {
 		var expires = "";
 		if (days) {
 			var date = new Date();
@@ -104,7 +104,7 @@
 		}
 		document.cookie = name + "=" + (value || "") + expires + "; path=/";
 	}
-	function getCookie(name) {
+	function AvAgeVerification_getCookie(name) {
 		var nameEQ = name + "=";
 		var ca = document.cookie.split(';');
 		for (var i = 0; i < ca.length; i++) {
@@ -115,25 +115,25 @@
 		return null;
 	}
 
-	function ageVerification(bool) {
+	function AvAgeVerification(bool) {
 		if (bool === true) {
-			setCookie('av-age-verification', 'true', 30);
+            AvAgeVerification_SetCookie('AvAgeVerification', 'true', 30);
 
 			location.reload();
 		}
 	}
 
-	if (getCookie('av-age-verification') !== 'true') {
+	if (AvAgeVerification_getCookie('AvAgeVerification') !== 'true') {
 		var div = document.createElement('div');
 
-		div.innerHTML = '<div class="av-age-verification-wrapper">\
-			<div class="av-age-verification-opacity"></div>\
-			<div class="av-age-verification-content">\
+		div.innerHTML = '<div class="AvAgeVerification-wrapper">\
+			<div class="AvAgeVerification-opacity"></div>\
+			<div class="AvAgeVerification-content">\
 			<img src="">\
 			<h3>{l|escape:'quotes' s='Age Verification' mod='avageverification'}</h3>\
 			<p>{l|escape:'quotes' s='This website contains age-restricted content.' mod='avageverification' }<br>\
 			{l|escape:'quotes' s='You must be %1$s years old or over to enter.' sprintf=[$avAge] mod='avageverification'}</p>\
-			<button onclick="ageVerification(true)">{l|escape:'quotes' s='I am %1$s or older - Enter' sprintf=[$avAge] mod='avageverification'}</button>\
+			<button onclick="AvAgeVerification(true)">{l|escape:'quotes' s='I am %1$s or older - Enter' sprintf=[$avAge] mod='avageverification'}</button>\
 			</div>\
 			</div>';
 		document.body.prepend(div);
