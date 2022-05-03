@@ -1,5 +1,10 @@
 # avageverification
 
+WARNING:
+```
+Before every push, remember to recomment AvAgeVerification volume in docker-compose.yml
+```
+
 Starting environment:
 ```
 docker-compose up -d && docker-compose logs -f
@@ -9,12 +14,10 @@ After prestashop initialization:
 ```
 docker-compose down
 
-uncomment prestashop plugin volume in docker-compose.yml 
+Remove AvAgeVerification volume comment in docker-compose.yml
 docker-compose up -d
 
 Back-Office -> Modules -> Module Catalog -> Search "AvAgeVerification" -> Install
-
-recomment prestashop plugin volume
 ```
 
 Prestashop Container CLI:
