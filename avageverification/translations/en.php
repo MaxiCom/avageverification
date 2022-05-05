@@ -21,7 +21,7 @@ $_MODULE['<{avageverification}prestashop>avageverification_08ecf72a6caf72b6c7578
 $_MODULE['<{avageverification}prestashop>avageverification_aa51285376719885f6cbfb240ba8faf2'] = 'Text Size';
 $_MODULE['<{avageverification}prestashop>avageverification_630f6dc397fe74e52d5189e2c80f282b'] = 'Back to list';
 $_MODULE['<{avageverification}prestashop>avageverification_8d44aa2de108298a6b2ca1a6b56c4d74'] = 'Invalid Configuration Value';
-$_MODULE['<{avageverification}prestashop>avageverification_7773ef39260ecb1b7c7479be56cb4026'] = 'Settings';
+$_MODULE['<{avageverification}prestashop>avageverification_7773ef39260ecb1b7c7479be56cb4026'] = 'Settings Updated!';
 $_MODULE['<{avageverification}prestashop>avageverification_5f00203a42c0023434af555f62336eb4'] = 'Age Verification';
 $_MODULE['<{avageverification}prestashop>avageverification_575b4077d1f3b972ea05d1f08dbae3bc'] = 'This website contains age-restricted content.';
 $_MODULE['<{avageverification}prestashop>avageverification_9d4187d383debbb2a8d88a20a01d2f33'] = 'You must be %1$s years old or over to enter.';

@@ -16,6 +16,7 @@ docker-compose up -d
 
 Back-Office -> Modules -> Module Catalog -> Search "AvAgeVerification" -> Install
 Back-Office -> Advanced Parameters -> Performance -> Smarty Template compilation -> Force Compilation
+Back-Office -> Advanced Parameters -> Performance -> Debug mode -> Yes
 ```
 
 Prestashop Container CLI:

@@ -33,7 +33,7 @@ class AvAgeVerification extends Module
     {
         $this->name = 'avageverification';
         $this->tab = 'front_office_features';
-        $this->version = '1.1.0';
+        $this->version = '1.2.0';
         $this->author = 'Maxime Morlet';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = [
@@ -133,10 +133,10 @@ class AvAgeVerification extends Module
                     'type' => 'categories',
                     'label' => $this->l('Category'),
                     'name' => 'avCategory',
-                    'required' => true,
                     'tree' => [
                         'id' => 'avCategory',
-                        'selected_categories' => array(Configuration::get('avCategory'))
+                        'selected_categories' => explode(',', Configuration::get('avCategory')),
+                        'use_checkbox' => true
                     ]
                 ], [
                     'type' => 'text',
@@ -264,17 +264,9 @@ class AvAgeVerification extends Module
             $avTextSizeMultiplicator = strval(Tools::getValue('avTextSizeMultiplicator'));
             $avAge = strval(Tools::getValue('avAge'));
             $avAllPages = strval(Tools::getValue('avAllPages'));
-            $avCategory = strval(Tools::getValue('avCategory'));
+            $avCategory = Tools::getValue('avCategory');
 
-            if (!$avBoxBackgroundColor
-                || !$avBoxBorderColor
-                || !$avBoxTextColor
-                || !$avButtonBackgroundColor
-                || !$avButtonTextColor
-                || !$avTextSizeMultiplicator
-                || !$avAge
-                || !$avCategory
-                || empty($avBoxBackgroundColor)
+            if (empty($avBoxBackgroundColor)
                 || empty($avBoxBorderColor)
                 || empty($avBoxTextColor)
                 || empty($avButtonBackgroundColor)
@@ -291,7 +283,6 @@ class AvAgeVerification extends Module
                 || !Validate::isGenericName($avTextSizeMultiplicator)
                 || !Validate::isGenericName($avAge)
                 || !Validate::isGenericName($avAllPages)
-                || !Validate::isGenericName($avCategory)
             ) {
                 $output .= $this->displayError($this->l('Invalid Configuration Value'));
             } else {
@@ -304,7 +295,7 @@ class AvAgeVerification extends Module
                 Configuration::updateValue('avTextSizeMultiplicator', $avTextSizeMultiplicator);
                 Configuration::updateValue('avAge', $avAge);
                 Configuration::updateValue('avAllPages', $avAllPages);
-                Configuration::updateValue('avCategory', $avCategory);
+                Configuration::updateValue('avCategory', implode(',', $avCategory));
 
                 $output .= $this->displayConfirmation($this->l('Settings Updated!'));
             }
@@ -333,7 +324,13 @@ class AvAgeVerification extends Module
             ]
         );
 
-        if (Configuration::get('avAllPages') == '1' || Tools::getValue('id_category') == Configuration::get('avCategory')) {
+        foreach (explode(',', Configuration::get('avCategory')) as $categoryId) {
+            if ($categoryId == Tools::getValue('id_category')) {
+                return ($this->display(__FILE__, 'avageverification.tpl'));
+            }
+        }
+
+        if (Configuration::get('avAllPages') == '1') {
             return ($this->display(__FILE__, 'avageverification.tpl'));
         }
     }
