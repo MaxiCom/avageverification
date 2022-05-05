@@ -33,3 +33,8 @@ email: user@example.com
 password: bitnami1
 ```
 
+Export to zip:
+```
+zip -r AvAgeVerification.zip avageverification
+```
+
