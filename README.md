@@ -19,9 +19,9 @@ Back-Office -> Advanced Parameters -> Performance -> Smarty Template compilation
 Back-Office -> Advanced Parameters -> Performance -> Debug mode -> Yes
 ```
 
-Prestashop Container CLI:
+Prestashop Container CLI (container name may vary):
 ```
-docker exec -it avageverification_prestashop_1 /bin/bash
+docker exec -it avageverification-prestashop-1 /bin/bash
 cd /bitnami/prestashop/
 ```
 
