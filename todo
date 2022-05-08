@@ -6,7 +6,6 @@ BUG FIX:
 
 En plus:
 
--Check lowest version
 -Isolate assets (css, script)
+-Check lowest version
 -AvAgeVerification-content dynamic transform
--Fix types comparison coersion

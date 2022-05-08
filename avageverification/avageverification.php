@@ -325,12 +325,12 @@ class AvAgeVerification extends Module
         );
 
         foreach (explode(',', Configuration::get('avCategory')) as $categoryId) {
-            if ($categoryId == Tools::getValue('id_category')) {
+            if ($categoryId === Tools::getValue('id_category')) {
                 return ($this->display(__FILE__, 'avageverification.tpl'));
             }
         }
 
-        if (Configuration::get('avAllPages') == '1') {
+        if (Configuration::get('avAllPages') === '1') {
             return ($this->display(__FILE__, 'avageverification.tpl'));
         }
     }
