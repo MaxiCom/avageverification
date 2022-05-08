@@ -17,6 +17,7 @@ docker-compose up -d
 Back-Office -> Modules -> Module Catalog -> Search "AvAgeVerification" -> Install
 Back-Office -> Advanced Parameters -> Performance -> Smarty Template compilation -> Force Compilation
 Back-Office -> Advanced Parameters -> Performance -> Debug mode -> Yes
+Back-Office -> International -> Localization -> Import a localization pack -> French + Spanish
 ```
 
 Prestashop Container CLI (container name may vary):

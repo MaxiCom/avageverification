@@ -2,10 +2,8 @@ Features:
 
 BUG FIX:
 
--Fix translations bo
+En plus (vraiment un détail):
 
-En plus:
-
+-New translations system (presta 1.7.8)
 -Isolate assets (css, script)
--Check lowest version
 -AvAgeVerification-content dynamic transform
