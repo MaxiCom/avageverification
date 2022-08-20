@@ -1,9 +1,12 @@
 Features:
 
+
 BUG FIX:
+
+-Only on home
+-New translations system (presta 1.7.6++)
 
 En plus (vraiment un détail):
 
--New translations system (presta 1.7.8)
 -Isolate assets (css, script)
 -AvAgeVerification-content dynamic transform
