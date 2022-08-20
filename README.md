@@ -26,6 +26,11 @@ docker exec -it avageverification-prestashop-1 /bin/bash
 cd /bitnami/prestashop/
 ```
 
+Front-office:
+```
+http://localhost
+```
+
 Back-office:
 ```
 http://localhost/administration/
